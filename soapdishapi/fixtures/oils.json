@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "Apricot Kernel Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 2,
+    "name": "Argan Oil",
+    "sap": 0.136
+  },
+  {
+    "id": 3,
+    "name": "Avocado Oil",
+    "sap": 0.133
+  },
+  {
+    "id": 4,
+    "name": "Avocado Butter",
+    "sap": 0.133
+  },
+  {
+    "id": 5,
+    "name": "Babassu Oil",
+    "sap": 0.175
+  },
+  {
+    "id": 6,
+    "name": "Borage Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 7,
+    "name": "Canola Oil",
+    "sap": 0.132
+  },
+  {
+    "id": 8,
+    "name": "Carrot Seed Oil",
+    "sap": 0.137
+  },
+  {
+    "id": 9,
+    "name": "Castor Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 10,
+    "name": "Chia Seed Oil",
+    "sap": 0.158
+  },
+  {
+    "id": 11,
+    "name": "Cocoa Butter",
+    "sap": 0.137
+  },
+  {
+    "id": 12,
+    "name": "Coconut Oil",
+    "sap": 0.178
+  },
+  {
+    "id": 13,
+    "name": "Coffee Butter",
+    "sap": 0.133
+  },
+  {
+    "id": 14,
+    "name": "Coffee Seed Oil",
+    "sap": 0.139
+  },
+  {
+    "id": 15,
+    "name": "Evening Primrose Oil",
+    "sap": 0.133
+  },
+  {
+    "id": 16,
+    "name": "Flaxseed Oil",
+    "sap": 0.19
+  },
+  {
+    "id": 17,
+    "name": "Fractionated Coconut Oil",
+    "sap": 0.232
+  },
+  {
+    "id": 18,
+    "name": "Grapeseed Oil",
+    "sap": 0.133
+  },
+  {
+    "id": 19,
+    "name": "Green Tea Seed Oil",
+    "sap": 0.136
+  },
+  {
+    "id": 20,
+    "name": "Hazelnut Oil",
+    "sap": 0.136
+  },
+  {
+    "id": 21,
+    "name": "Hemp Seed Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 22,
+    "name": "Jojoba Oil",
+    "sap": 0.069
+  },
+  {
+    "id": 23,
+    "name": "Kokum Butter",
+    "sap": 0.135
+  },
+  {
+    "id": 24,
+    "name": "Kukui Nut Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 25,
+    "name": "Lingonberry Seed Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 26,
+    "name": "Mango Butter",
+    "sap": 0.137
+  },
+  {
+    "id": 27,
+    "name": "Meadowfoam Oil",
+    "sap": 0.12
+  },
+  {
+    "id": 28,
+    "name": "Moringa Seed Oil",
+    "sap": 0.139
+  },
+  {
+    "id": 29,
+    "name": "Neem Oil",
+    "sap": 0.136
+  },
+  {
+    "id": 30,
+    "name": "Oat Oil",
+    "sap": 0.138
+  },
+  {
+    "id": 31,
+    "name": "Olive Oil",
+    "sap": 0.134
+  },
+  {
+    "id": 32,
+    "name": "Palm Oil",
+    "sap": 0.144
+  },
+  {
+    "id": 33,
+    "name": "Palm Kernel Flakes",
+    "sap": 0.178
+  },
+  {
+    "id": 34,
+    "name": "Peach Kernel Oil",
+    "sap": 0.178
+  },
+  {
+    "id": 35,
+    "name": "Peanut Oil",
+    "sap": 0.19
+  },
+  {
+    "id": 36,
+    "name": "Raspberry Seed Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 37,
+    "name": "Red Palm Oil",
+    "sap": 0.144
+  },
+  {
+    "id": 38,
+    "name": "Rice Bran Oil",
+    "sap": 0.129
+  },
+  {
+    "id": 39,
+    "name": "Rosehip Seed Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 40,
+    "name": "Safflower Oil",
+    "sap": 0.19
+  },
+  {
+    "id": 41,
+    "name": "Sesame Oil",
+    "sap": 0.19
+  },
+  {
+    "id": 42,
+    "name": "Shea Butter",
+    "sap": 0.133
+  },
+  {
+    "id": 43,
+    "name": "Soybean Oil",
+    "sap": 0.135
+  },
+  {
+    "id": 44,
+    "name": "Sunflower Oil",
+    "sap": 0.134
+  },
+  {
+    "id": 45,
+    "name": "Sweet Almond Oil",
+    "sap": 0.136
+  },
+  {
+    "id": 46,
+    "name": "Tamanu Oil",
+    "sap": 0.148
+  },
+  {
+    "id": 47,
+    "name": "Walnut Oil",
+    "sap": 0.192
+  },
+  {
+    "id": 48,
+    "name": "Wheat Germ Oil",
+    "sap": 0.131
+  }
+]
