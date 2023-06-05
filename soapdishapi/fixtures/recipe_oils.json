@@ -1,6 +1,6 @@
 [
   {
-    "model": "soapdishapi.recipe_oil",
+    "model": "soapdishapi.recipeoil",
     "pk": 1,
     "fields": {
       "recipe": 1,
@@ -9,7 +9,7 @@
     }
   },
   {
-    "model": "soapdishapi.recipe_oil",
+    "model": "soapdishapi.recipeoil",
     "pk": 2,
     "fields": {
       "recipe": 2,
@@ -18,7 +18,7 @@
     }
   },
   {
-    "model": "soapdishapi.recipe_oil",
+    "model": "soapdishapi.recipeoil",
     "pk": 3,
     "fields": {
       "recipe": 3,
@@ -27,7 +27,7 @@
     }
   },
   {
-    "model": "soapdishapi.recipe_oil",
+    "model": "soapdishapi.recipeoil",
     "pk": 4,
     "fields": {
       "recipe": 3,
@@ -36,7 +36,7 @@
     }
   },
   {
-    "model": "soapdishapi.recipe_oil",
+    "model": "soapdishapi.recipeoil",
     "pk": 5,
     "fields": {
       "recipe": 3,
@@ -45,7 +45,7 @@
     }
   },
   {
-    "model": "soapdishapi.recipe_oil",
+    "model": "soapdishapi.recipeoil",
     "pk": 6,
     "fields": {
       "recipe": 3,
