@@ -17,7 +17,7 @@ class RecipeView(ViewSet):
         """
         recipes = Recipe.objects.all()
         serializer = RecipeSerializer(recipes, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk):
         """Handle GET requests for single recipe
@@ -25,6 +25,12 @@ class RecipeView(ViewSet):
         Returns:
             Response -- JSON serialized recipe
         """
+        try:
+            recipe = Recipe.objects.get(pk=pk)
+            serializer = RecipeSerializer(recipe, many=False)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Recipe.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
 
 class RecipeSerializer(serializers.ModelSerializer):
