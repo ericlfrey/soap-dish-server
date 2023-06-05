@@ -8,6 +8,7 @@ class Recipe(models.Model):
     title = models.CharField(models.CharField(max_length=50))
     water_amount = models.DecimalField(max_digits=5, decimal_places=3)
     lye_amount = models.DecimalField(max_digits=5, decimal_places=3)
+    super_fat = models.DecimalField(max_digits=5, decimal_places=3)
     description = models.CharField(models.CharField(max_length=100))
     notes = models.CharField(models.CharField(max_length=200))
     public = models.BooleanField(default=False)

@@ -1,0 +1,44 @@
+[
+  {
+    "model": "soapdishapi.recipe",
+    "pk": 1,
+    "fields": {
+      "maker": 1,
+      "title": "Castile Soap",
+      "water_amount": 10.56,
+      "lye_amount": 4.12,
+      "super_fat": 0.05,
+      "description": "This is a basic soap using 100% Olive Oil. Thought to have originated in the Castile region of Spain, this soap is a staple in many soapers' recipe books.",
+      "notes": "Castile soaps can take longer to trace, and longer to cure. It is advised to let the bars cure for 6-12 months to ensure a hard bar. Adding sodium lactate to the lye solution is recommended as well.",
+      "public": true
+    }
+  },
+  {
+    "model": "soapdishapi.recipe",
+    "pk": 2,
+    "fields": {
+      "maker": 1,
+      "title": "Coconut Oil Soap",
+      "water_amount": 10.56,
+      "lye_amount": 4.69,
+      "super_fat": 0.2,
+      "description": "This recipe is made from 100% Coconut Oil.",
+      "notes": "Although Coconut Oil can be drying, superfatting at 20% can offset the natural tendencies to create a simple to make bar. This bar creates tons of bubbles!",
+      "public": true
+    }
+  },
+  {
+    "model": "soapdishapi.recipe",
+    "pk": 3,
+    "fields": {
+      "maker": 1,
+      "title": "Basic Beginner's Recipe",
+      "water_amount": 10.9,
+      "lye_amount": 4.7,
+      "super_fat": 0.05,
+      "description": "This is a very basic recipe that uses the 3 most used oils in soapmaking, plus Castor Oil for extra bubbles and lather stability.",
+      "notes": "This recipe is a must have in your recipe book. Many recipes are variations on this one.",
+      "public": true
+    }
+  }
+]
