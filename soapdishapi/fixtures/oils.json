@@ -1,242 +1,387 @@
 [
   {
-    "id": 1,
-    "name": "Apricot Kernel Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "name": "Apricot Kernel Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 2,
-    "name": "Argan Oil",
-    "sap": 0.136
+    "model": "soapdishapi.oil",
+    "pk": 2,
+    "fields": {
+      "name": "Argan Oil",
+      "sap": 0.136
+    }
   },
   {
-    "id": 3,
-    "name": "Avocado Oil",
-    "sap": 0.133
+    "model": "soapdishapi.oil",
+    "pk": 3,
+    "fields": {
+      "name": "Avocado Oil",
+      "sap": 0.133
+    }
   },
   {
-    "id": 4,
-    "name": "Avocado Butter",
-    "sap": 0.133
+    "model": "soapdishapi.oil",
+    "pk": 4,
+    "fields": {
+      "name": "Avocado Butter",
+      "sap": 0.133
+    }
   },
   {
-    "id": 5,
-    "name": "Babassu Oil",
-    "sap": 0.175
+    "model": "soapdishapi.oil",
+    "pk": 5,
+    "fields": {
+      "name": "Babassu Oil",
+      "sap": 0.175
+    }
   },
   {
-    "id": 6,
-    "name": "Borage Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 6,
+    "fields": {
+      "name": "Borage Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 7,
-    "name": "Canola Oil",
-    "sap": 0.132
+    "model": "soapdishapi.oil",
+    "pk": 7,
+    "fields": {
+      "name": "Canola Oil",
+      "sap": 0.132
+    }
   },
   {
-    "id": 8,
-    "name": "Carrot Seed Oil",
-    "sap": 0.137
+    "model": "soapdishapi.oil",
+    "pk": 8,
+    "fields": {
+      "name": "Carrot Seed Oil",
+      "sap": 0.137
+    }
   },
   {
-    "id": 9,
-    "name": "Castor Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 9,
+    "fields": {
+      "name": "Castor Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 10,
-    "name": "Chia Seed Oil",
-    "sap": 0.158
+    "model": "soapdishapi.oil",
+    "pk": 10,
+    "fields": {
+      "name": "Chia Seed Oil",
+      "sap": 0.158
+    }
   },
   {
-    "id": 11,
-    "name": "Cocoa Butter",
-    "sap": 0.137
+    "model": "soapdishapi.oil",
+    "pk": 11,
+    "fields": {
+      "name": "Cocoa Butter",
+      "sap": 0.137
+    }
   },
   {
-    "id": 12,
-    "name": "Coconut Oil",
-    "sap": 0.178
+    "model": "soapdishapi.oil",
+    "pk": 12,
+    "fields": {
+      "name": "Coconut Oil",
+      "sap": 0.178
+    }
   },
   {
-    "id": 13,
-    "name": "Coffee Butter",
-    "sap": 0.133
+    "model": "soapdishapi.oil",
+    "pk": 13,
+    "fields": {
+      "name": "Coffee Butter",
+      "sap": 0.133
+    }
   },
   {
-    "id": 14,
-    "name": "Coffee Seed Oil",
-    "sap": 0.139
+    "model": "soapdishapi.oil",
+    "pk": 14,
+    "fields": {
+      "name": "Coffee Seed Oil",
+      "sap": 0.139
+    }
   },
   {
-    "id": 15,
-    "name": "Evening Primrose Oil",
-    "sap": 0.133
+    "model": "soapdishapi.oil",
+    "pk": 15,
+    "fields": {
+      "name": "Evening Primrose Oil",
+      "sap": 0.133
+    }
   },
   {
-    "id": 16,
-    "name": "Flaxseed Oil",
-    "sap": 0.19
+    "model": "soapdishapi.oil",
+    "pk": 16,
+    "fields": {
+      "name": "Flaxseed Oil",
+      "sap": 0.19
+    }
   },
   {
-    "id": 17,
-    "name": "Fractionated Coconut Oil",
-    "sap": 0.232
+    "model": "soapdishapi.oil",
+    "pk": 17,
+    "fields": {
+      "name": "Fractionated Coconut Oil",
+      "sap": 0.232
+    }
   },
   {
-    "id": 18,
-    "name": "Grapeseed Oil",
-    "sap": 0.133
+    "model": "soapdishapi.oil",
+    "pk": 18,
+    "fields": {
+      "name": "Grapeseed Oil",
+      "sap": 0.133
+    }
   },
   {
-    "id": 19,
-    "name": "Green Tea Seed Oil",
-    "sap": 0.136
+    "model": "soapdishapi.oil",
+    "pk": 19,
+    "fields": {
+      "name": "Green Tea Seed Oil",
+      "sap": 0.136
+    }
   },
   {
-    "id": 20,
-    "name": "Hazelnut Oil",
-    "sap": 0.136
+    "model": "soapdishapi.oil",
+    "pk": 20,
+    "fields": {
+      "name": "Hazelnut Oil",
+      "sap": 0.136
+    }
   },
   {
-    "id": 21,
-    "name": "Hemp Seed Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 21,
+    "fields": {
+      "name": "Hemp Seed Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 22,
-    "name": "Jojoba Oil",
-    "sap": 0.069
+    "model": "soapdishapi.oil",
+    "pk": 22,
+    "fields": {
+      "name": "Jojoba Oil",
+      "sap": 0.069
+    }
   },
   {
-    "id": 23,
-    "name": "Kokum Butter",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 23,
+    "fields": {
+      "name": "Kokum Butter",
+      "sap": 0.135
+    }
   },
   {
-    "id": 24,
-    "name": "Kukui Nut Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 24,
+    "fields": {
+      "name": "Kukui Nut Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 25,
-    "name": "Lingonberry Seed Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 25,
+    "fields": {
+      "name": "Lingonberry Seed Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 26,
-    "name": "Mango Butter",
-    "sap": 0.137
+    "model": "soapdishapi.oil",
+    "pk": 26,
+    "fields": {
+      "name": "Mango Butter",
+      "sap": 0.137
+    }
   },
   {
-    "id": 27,
-    "name": "Meadowfoam Oil",
-    "sap": 0.12
+    "model": "soapdishapi.oil",
+    "pk": 27,
+    "fields": {
+      "name": "Meadowfoam Oil",
+      "sap": 0.12
+    }
   },
   {
-    "id": 28,
-    "name": "Moringa Seed Oil",
-    "sap": 0.139
+    "model": "soapdishapi.oil",
+    "pk": 28,
+    "fields": {
+      "name": "Moringa Seed Oil",
+      "sap": 0.139
+    }
   },
   {
-    "id": 29,
-    "name": "Neem Oil",
-    "sap": 0.136
+    "model": "soapdishapi.oil",
+    "pk": 29,
+    "fields": {
+      "name": "Neem Oil",
+      "sap": 0.136
+    }
   },
   {
-    "id": 30,
-    "name": "Oat Oil",
-    "sap": 0.138
+    "model": "soapdishapi.oil",
+    "pk": 30,
+    "fields": {
+      "name": "Oat Oil",
+      "sap": 0.138
+    }
   },
   {
-    "id": 31,
-    "name": "Olive Oil",
-    "sap": 0.134
+    "model": "soapdishapi.oil",
+    "pk": 31,
+    "fields": {
+      "name": "Olive Oil",
+      "sap": 0.134
+    }
   },
   {
-    "id": 32,
-    "name": "Palm Oil",
-    "sap": 0.144
+    "model": "soapdishapi.oil",
+    "pk": 32,
+    "fields": {
+      "name": "Palm Oil",
+      "sap": 0.144
+    }
   },
   {
-    "id": 33,
-    "name": "Palm Kernel Flakes",
-    "sap": 0.178
+    "model": "soapdishapi.oil",
+    "pk": 33,
+    "fields": {
+      "name": "Palm Kernel Flakes",
+      "sap": 0.178
+    }
   },
   {
-    "id": 34,
-    "name": "Peach Kernel Oil",
-    "sap": 0.178
+    "model": "soapdishapi.oil",
+    "pk": 34,
+    "fields": {
+      "name": "Peach Kernel Oil",
+      "sap": 0.178
+    }
   },
   {
-    "id": 35,
-    "name": "Peanut Oil",
-    "sap": 0.19
+    "model": "soapdishapi.oil",
+    "pk": 35,
+    "fields": {
+      "name": "Peanut Oil",
+      "sap": 0.19
+    }
   },
   {
-    "id": 36,
-    "name": "Raspberry Seed Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 36,
+    "fields": {
+      "name": "Raspberry Seed Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 37,
-    "name": "Red Palm Oil",
-    "sap": 0.144
+    "model": "soapdishapi.oil",
+    "pk": 37,
+    "fields": {
+      "name": "Red Palm Oil",
+      "sap": 0.144
+    }
   },
   {
-    "id": 38,
-    "name": "Rice Bran Oil",
-    "sap": 0.129
+    "model": "soapdishapi.oil",
+    "pk": 38,
+    "fields": {
+      "name": "Rice Bran Oil",
+      "sap": 0.129
+    }
   },
   {
-    "id": 39,
-    "name": "Rosehip Seed Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 39,
+    "fields": {
+      "name": "Rosehip Seed Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 40,
-    "name": "Safflower Oil",
-    "sap": 0.19
+    "model": "soapdishapi.oil",
+    "pk": 40,
+    "fields": {
+      "name": "Safflower Oil",
+      "sap": 0.19
+    }
   },
   {
-    "id": 41,
-    "name": "Sesame Oil",
-    "sap": 0.19
+    "model": "soapdishapi.oil",
+    "pk": 41,
+    "fields": {
+      "name": "Sesame Oil",
+      "sap": 0.19
+    }
   },
   {
-    "id": 42,
-    "name": "Shea Butter",
-    "sap": 0.133
+    "model": "soapdishapi.oil",
+    "pk": 42,
+    "fields": {
+      "name": "Shea Butter",
+      "sap": 0.133
+    }
   },
   {
-    "id": 43,
-    "name": "Soybean Oil",
-    "sap": 0.135
+    "model": "soapdishapi.oil",
+    "pk": 43,
+    "fields": {
+      "name": "Soybean Oil",
+      "sap": 0.135
+    }
   },
   {
-    "id": 44,
-    "name": "Sunflower Oil",
-    "sap": 0.134
+    "model": "soapdishapi.oil",
+    "pk": 44,
+    "fields": {
+      "name": "Sunflower Oil",
+      "sap": 0.134
+    }
   },
   {
-    "id": 45,
-    "name": "Sweet Almond Oil",
-    "sap": 0.136
+    "model": "soapdishapi.oil",
+    "pk": 45,
+    "fields": {
+      "name": "Sweet Almond Oil",
+      "sap": 0.136
+    }
   },
   {
-    "id": 46,
-    "name": "Tamanu Oil",
-    "sap": 0.148
+    "model": "soapdishapi.oil",
+    "pk": 46,
+    "fields": {
+      "name": "Tamanu Oil",
+      "sap": 0.148
+    }
   },
   {
-    "id": 47,
-    "name": "Walnut Oil",
-    "sap": 0.192
+    "model": "soapdishapi.oil",
+    "pk": 47,
+    "fields": {
+      "name": "Walnut Oil",
+      "sap": 0.192
+    }
   },
   {
-    "id": 48,
-    "name": "Wheat Germ Oil",
-    "sap": 0.131
+    "model": "soapdishapi.oil",
+    "pk": 48,
+    "fields": {
+      "name": "Wheat Germ Oil",
+      "sap": 0.131
+    }
   }
 ]
