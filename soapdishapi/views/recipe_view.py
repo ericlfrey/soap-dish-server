@@ -1,9 +1,10 @@
 """View module for handling requests about game types"""
 from django.http import HttpResponseServerError
+from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from soapdishapi.models import Recipe
+from soapdishapi.models import Recipe, RecipeOil
 
 
 class RecipeView(ViewSet):
@@ -26,8 +27,9 @@ class RecipeView(ViewSet):
             Response -- JSON serialized recipe
         """
         try:
-            recipe = Recipe.objects.get(pk=pk)
-            serializer = RecipeSerializer(recipe, many=False)
+            recipe = Recipe.objects.annotate(oil_list=Count(
+                'oils')).get(pk=pk)
+            serializer = SingleRecipeSerializer(recipe, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Recipe.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
@@ -48,3 +50,24 @@ class RecipeSerializer(serializers.ModelSerializer):
             'notes',
             'public'
         )
+
+
+class SingleRecipeSerializer(serializers.ModelSerializer):
+    """JSON serializer for recipes"""
+    oil_list = serializers.IntegerField(default=None)
+
+    class Meta:
+        model = Recipe
+        fields = (
+            'id',
+            'maker',
+            'title',
+            'water_amount',
+            'lye_amount',
+            'super_fat',
+            'description',
+            'notes',
+            'public',
+            'oil_list'
+        )
+        depth = 1
