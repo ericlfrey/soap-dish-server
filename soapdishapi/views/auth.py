@@ -48,6 +48,7 @@ def register_user(request):
     # Return the soaper info to the client
     data = {
         'id': soaper.id,
+        'uid': soaper.uid,
         'first_name': soaper.first_name,
         'last_name': soaper.last_name
     }
