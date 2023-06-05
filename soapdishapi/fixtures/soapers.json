@@ -1,0 +1,11 @@
+[
+  {
+    "model": "soapdishapi.soaper",
+    "pk": 1,
+    "fields": {
+      "uid": 1,
+      "first_name": "Soap",
+      "last_name": "Maker"
+    }
+  }
+]
