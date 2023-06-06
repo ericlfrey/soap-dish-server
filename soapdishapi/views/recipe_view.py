@@ -48,13 +48,49 @@ class RecipeView(ViewSet):
         oils = request.data['oils']
         for oil in oils:
             recipe = Recipe.objects.get(pk=serializer.data['id'])
-            oil_obj = Oil.objects.get(pk=oil["id"])
+            oil_obj = Oil.objects.get(pk=oil["oilId"])
             RecipeOil.objects.create(
                 recipe=recipe,
                 oil=oil_obj,
                 amount=oil["amount"]
             )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+        """Handle PUT requests for a recipe
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+
+        recipe = Recipe.objects.get(pk=pk)
+        recipe.description = request.data["description"]
+        recipe.title = request.data["title"]
+        recipe.water_amount = request.data["water_amount"]
+        recipe.lye_amount = request.data["lye_amount"]
+        recipe.super_fat = request.data["super_fat"]
+        recipe.description = request.data["description"]
+        recipe.notes = request.data["notes"]
+        recipe.public = request.data["public"]
+        recipe.save()
+
+        recipe_oils = request.data["oils"]
+        current_oils = RecipeOil.objects.all().filter(recipe=recipe)
+        print('POOOOOOOPPPPPP', current_oils)
+        for recipe_oil in recipe_oils:
+            if recipe_oil['id']:
+                updated_oil = RecipeOil.objects.get(pk=recipe_oil["id"])
+                updated_oil.oil = Oil.objects.get(pk=recipe_oil["oilId"])
+                updated_oil.amount = recipe_oil['amount']
+                updated_oil.save()
+            else:
+                RecipeOil.objects.create(
+                    recipe=recipe,
+                    oil=Oil.objects.get(pk=recipe_oil["oilId"]),
+                    amount=recipe_oil["amount"]
+                )
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 
 class RecipeSerializer(serializers.ModelSerializer):
