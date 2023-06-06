@@ -1,4 +1,5 @@
 from django.db import models
+from .recipe_oil import RecipeOil
 
 
 class Recipe(models.Model):
@@ -12,3 +13,5 @@ class Recipe(models.Model):
     description = models.CharField(max_length=100)
     notes = models.CharField(max_length=200)
     public = models.BooleanField(default=False)
+    oils = models.ManyToManyField(
+        'Oil', related_name="oils", through=RecipeOil)
