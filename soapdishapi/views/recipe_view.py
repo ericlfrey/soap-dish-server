@@ -65,6 +65,7 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'super_fat',
             'description',
             'notes',
-            'public'
+            'public',
+            'oils'
         )
         depth = 1
