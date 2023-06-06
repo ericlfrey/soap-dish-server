@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from soapdishapi.models import Recipe, RecipeOil, Soaper
+from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil
 
 
 class RecipeView(ViewSet):
@@ -46,10 +46,12 @@ class RecipeView(ViewSet):
 
         oils = request.data['oils']
         for oil in oils:
+            recipe = Recipe.objects.get(pk=serializer.data['id'])
+            oil_obj = Oil.objects.get(pk=oil["id"])
             RecipeOil.objects.create(
-                recipe=request.META['HTTP_AUTHORIZATION'],
-                oil=oil.id,
-                amount=oil.amount
+                recipe=recipe,
+                oil=oil_obj,
+                amount=oil["amount"]
             )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
