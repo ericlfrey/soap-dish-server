@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from soapdishapi.models import Recipe, Oil
+from soapdishapi.models import Recipe, Oil, RecipeOil
 
 
 class RecipeView(ViewSet):
@@ -51,8 +51,22 @@ class RecipeSerializer(serializers.ModelSerializer):
         )
 
 
+class OilSerializer(serializers.ModelSerializer):
+    """Doc"""
+
+    class Meta:
+        model = RecipeOil
+        fields = (
+            'id',
+            'amount',
+            'oil_name'
+        )
+
+
 class SingleRecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
+
+    recipe_oils = OilSerializer(many=True)
 
     class Meta:
         model = Recipe
@@ -66,6 +80,5 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'description',
             'notes',
             'public',
-            'oils'
+            'recipe_oils'
         )
-        depth = 1
