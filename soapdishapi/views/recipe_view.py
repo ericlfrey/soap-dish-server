@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from soapdishapi.models import Recipe, Oil, RecipeOil
+from soapdishapi.models import Recipe, RecipeOil, Soaper
 
 
 class RecipeView(ViewSet):
@@ -33,6 +33,26 @@ class RecipeView(ViewSet):
         except Recipe.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
+    def create(self, request):
+        """Handle POST operations
+
+        Returns
+            Response -- JSON serialized recipe instance
+        """
+        maker = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        serializer = CreateRecipeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(maker=maker)
+
+        oils = request.data['oils']
+        for oil in oils:
+            RecipeOil.objects.create(
+                recipe=request.META['HTTP_AUTHORIZATION'],
+                oil=oil.id,
+                amount=oil.amount
+            )
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
 class RecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
@@ -40,7 +60,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = (
             'id',
-            'maker',
             'title',
             'water_amount',
             'lye_amount',
@@ -81,4 +100,20 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'notes',
             'public',
             'recipe_oils'
+        )
+
+
+class CreateRecipeSerializer(serializers.ModelSerializer):
+    """JSON serializer for creating a new Recipe instance"""
+    class Meta:
+        model = Recipe
+        fields = (
+            'id',
+            'title',
+            'water_amount',
+            'lye_amount',
+            'super_fat',
+            'description',
+            'notes',
+            'public'
         )
