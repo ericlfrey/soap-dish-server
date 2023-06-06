@@ -75,10 +75,9 @@ class RecipeView(ViewSet):
         recipe.save()
 
         recipe_oils = request.data["oils"]
-        current_oils = RecipeOil.objects.all().filter(recipe=recipe)
-        print('POOOOOOOPPPPPP', current_oils)
+        # current_oils = RecipeOil.objects.all().filter(recipe=recipe)
         for recipe_oil in recipe_oils:
-            if recipe_oil['id']:
+            if 'id' in recipe_oil:
                 updated_oil = RecipeOil.objects.get(pk=recipe_oil["id"])
                 updated_oil.oil = Oil.objects.get(pk=recipe_oil["oilId"])
                 updated_oil.amount = recipe_oil['amount']
