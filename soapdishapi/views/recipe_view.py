@@ -108,6 +108,12 @@ class RecipeView(ViewSet):
             # Handle any other unexpected exceptions
             return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    def destroy(self, request, pk):
+        """ Handle DELETE requests for a single recipe"""
+        recipe = Recipe.objects.get(pk=pk)
+        recipe.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class RecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
