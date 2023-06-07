@@ -1,6 +1,7 @@
 """View module for handling requests about game types"""
 from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
+from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -18,7 +19,9 @@ class RecipeView(ViewSet):
         Returns:
             Response -- JSON serialized list of recipes
         """
-        recipes = Recipe.objects.all()
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipes = Recipe.objects.annotate(
+            is_favorite=Count('favorites'), filter=Q(favorites=user))
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -28,8 +31,10 @@ class RecipeView(ViewSet):
         Returns:
             Response -- JSON serialized recipe
         """
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         try:
-            recipe = Recipe.objects.get(pk=pk)
+            recipe = Recipe.objects.annotate(
+                is_favorite=Count('favorites'), filter=Q(favorites=user)).get(pk=pk)
             serializer = SingleRecipeSerializer(recipe, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Recipe.DoesNotExist as ex:
