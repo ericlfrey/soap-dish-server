@@ -129,7 +129,7 @@ class RecipeView(ViewSet):
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         recipe = Recipe.objects.get(pk=pk)
         recipe.favorites.add(user)
-        return Response({'message': 'Recipe favorited'}, status=status.HTTP_201_CREATED)
+        return Response({'message': 'Recipe favorited'}, status=status.HTTP_200_OK)
 
     @action(methods=['delete'], detail=True)
     def unfavorite(self, request, pk):
@@ -146,4 +146,4 @@ class RecipeView(ViewSet):
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         favorite_recipes = Recipe.objects.filter(favorites=user)
         serializer = RecipeSerializer(favorite_recipes, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response({'recipes': serializer.data}, status=status.HTTP_200_OK)
