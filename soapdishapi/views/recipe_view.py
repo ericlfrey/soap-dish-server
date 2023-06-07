@@ -1,10 +1,12 @@
 """View module for handling requests about game types"""
 from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
+from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import status
-from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil
+from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil, Favorite
 from soapdishapi.serializers import RecipeSerializer, SingleRecipeSerializer, CreateRecipeSerializer
 
 
@@ -17,7 +19,9 @@ class RecipeView(ViewSet):
         Returns:
             Response -- JSON serialized list of recipes
         """
-        recipes = Recipe.objects.all()
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipes = Recipe.objects.annotate(
+            is_favorite=Count('favorites'), filter=Q(favorites=user))
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -27,8 +31,10 @@ class RecipeView(ViewSet):
         Returns:
             Response -- JSON serialized recipe
         """
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         try:
-            recipe = Recipe.objects.get(pk=pk)
+            recipe = Recipe.objects.annotate(
+                is_favorite=Count('favorites'), filter=Q(favorites=user)).get(pk=pk)
             serializer = SingleRecipeSerializer(recipe, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Recipe.DoesNotExist as ex:
@@ -115,3 +121,29 @@ class RecipeView(ViewSet):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['post'], detail=True)
+    def favorite(self, request, pk):
+        """Post request for a user to favorite a recipe"""
+
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipe = Recipe.objects.get(pk=pk)
+        recipe.favorites.add(user)
+        return Response({'message': 'Recipe favorited'}, status=status.HTTP_200_OK)
+
+    @action(methods=['delete'], detail=True)
+    def unfavorite(self, request, pk):
+        """Delete request for a user to unfavorite a recipe"""
+
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipe = Recipe.objects.get(pk=pk)
+        recipe.favorites.remove(user)
+        return Response({'message': 'Recipe unfavorited'}, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['get'], detail=False)
+    def favorites(self, request):
+        """Get the user's liked products"""
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        favorite_recipes = Recipe.objects.filter(favorites=user)
+        serializer = RecipeSerializer(favorite_recipes, many=True)
+        return Response({'recipes': serializer.data}, status=status.HTTP_200_OK)

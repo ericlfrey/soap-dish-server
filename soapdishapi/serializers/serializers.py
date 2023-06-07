@@ -4,6 +4,9 @@ from soapdishapi.models import Recipe, RecipeOil
 
 class RecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
+
+    is_favorite = serializers.BooleanField(required=False)
+
     class Meta:
         model = Recipe
         fields = (
@@ -15,7 +18,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             'super_fat',
             'description',
             'notes',
-            'public'
+            'public',
+            'is_favorite'
         )
 
 
@@ -35,6 +39,7 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
 
     recipe_oils = OilSerializer(many=True)
+    is_favorite = serializers.BooleanField(required=False)
 
     class Meta:
         model = Recipe
@@ -48,7 +53,8 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'description',
             'notes',
             'public',
-            'recipe_oils'
+            'recipe_oils',
+            'is_favorite'
         )
 
 
