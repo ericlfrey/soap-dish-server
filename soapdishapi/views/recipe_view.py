@@ -1,6 +1,5 @@
 """View module for handling requests about game types"""
 from django.http import HttpResponseServerError
-from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -63,43 +62,51 @@ class RecipeView(ViewSet):
             Response -- Empty body with 204 status code
         """
 
-        recipe = Recipe.objects.get(pk=pk)
-        recipe.title = request.data["title"]
-        recipe.water_amount = request.data["water_amount"]
-        recipe.lye_amount = request.data["lye_amount"]
-        recipe.super_fat = request.data["super_fat"]
-        recipe.description = request.data["description"]
-        recipe.notes = request.data["notes"]
-        recipe.public = request.data["public"]
-        recipe.save()
+        try:
+            recipe = Recipe.objects.get(pk=pk)
+            recipe.title = request.data["title"]
+            recipe.water_amount = request.data["water_amount"]
+            recipe.lye_amount = request.data["lye_amount"]
+            recipe.super_fat = request.data["super_fat"]
+            recipe.description = request.data["description"]
+            recipe.notes = request.data["notes"]
+            recipe.public = request.data["public"]
+            recipe.save()
 
-        recipe_oils = request.data["oils"]
+            recipe_oils = request.data["oils"]
+            for recipe_oil in recipe_oils:
+                if 'id' in recipe_oil:
+                    try:
+                        current_oil = RecipeOil.objects.get(
+                            pk=recipe_oil["id"])
+                        current_oil.delete()
+                    except RecipeOil.DoesNotExist:
+                        # Handle the case when the specified RecipeOil doesn't exist
+                        return Response("RecipeOil not found", status=status.HTTP_404_NOT_FOUND)
 
-        recipe_oil_list = []
-        for oil in recipe_oils:
-            if 'id' in oil:
-                oil_obj = RecipeOil.objects.get(pk=oil["id"])
-                recipe_oil_list.append(oil_obj)
+                try:
+                    RecipeOil.objects.create(
+                        recipe=recipe,
+                        oil=Oil.objects.get(pk=recipe_oil["oilId"]),
+                        amount=recipe_oil["amount"]
+                    )
+                except Oil.DoesNotExist:
+                    # Handle the case when the specified Oil doesn't exist
+                    return Response("Oil not found", status=status.HTTP_404_NOT_FOUND)
 
-        current_oils = RecipeOil.objects.all().filter(recipe=recipe)
-        for current_oil in current_oils:
-            if current_oil not in recipe_oil_list:
-                current_oil.delete()
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
 
-        for recipe_oil in recipe_oils:
-            if 'id' in recipe_oil:
-                updated_oil = RecipeOil.objects.get(pk=recipe_oil["id"])
-                updated_oil.oil = Oil.objects.get(pk=recipe_oil["oilId"])
-                updated_oil.amount = recipe_oil['amount']
-                updated_oil.save()
-            else:
-                RecipeOil.objects.create(
-                    recipe=recipe,
-                    oil=Oil.objects.get(pk=recipe_oil["oilId"]),
-                    amount=recipe_oil["amount"]
-                )
+        except Recipe.DoesNotExist:
+            # Handle the case when the specified Recipe doesn't exist
+            return Response("Recipe not found", status=status.HTTP_404_NOT_FOUND)
 
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        except KeyError as e:
+            # Handle the case when a required field is missing from the request data
+            return Response(f"Missing field: {str(e)}", status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            # Handle any other unexpected exceptions
+            return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class RecipeSerializer(serializers.ModelSerializer):
