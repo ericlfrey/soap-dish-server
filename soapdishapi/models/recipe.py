@@ -15,3 +15,12 @@ class Recipe(models.Model):
     public = models.BooleanField(default=False)
     oils = models.ManyToManyField(
         'Oil', related_name="oils", through=RecipeOil)
+
+    @property
+    def favorite(self):
+        """Custom Property"""
+        return self.__favorite
+
+    @favorite.setter
+    def favorite(self, value):
+        self.__favorite = value
