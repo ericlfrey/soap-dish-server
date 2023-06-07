@@ -3,8 +3,9 @@ from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
-from rest_framework import serializers, status
+from rest_framework import status
 from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil
+from soapdishapi.serializers import RecipeSerializer, SingleRecipeSerializer, CreateRecipeSerializer
 
 
 class RecipeView(ViewSet):
@@ -114,69 +115,3 @@ class RecipeView(ViewSet):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-
-
-class RecipeSerializer(serializers.ModelSerializer):
-    """JSON serializer for recipes"""
-    class Meta:
-        model = Recipe
-        fields = (
-            'id',
-            'maker',
-            'title',
-            'water_amount',
-            'lye_amount',
-            'super_fat',
-            'description',
-            'notes',
-            'public'
-        )
-
-
-class OilSerializer(serializers.ModelSerializer):
-    """Doc"""
-
-    class Meta:
-        model = RecipeOil
-        fields = (
-            'id',
-            'amount',
-            'oil_name'
-        )
-
-
-class SingleRecipeSerializer(serializers.ModelSerializer):
-    """JSON serializer for recipes"""
-
-    recipe_oils = OilSerializer(many=True)
-
-    class Meta:
-        model = Recipe
-        fields = (
-            'id',
-            'maker',
-            'title',
-            'water_amount',
-            'lye_amount',
-            'super_fat',
-            'description',
-            'notes',
-            'public',
-            'recipe_oils'
-        )
-
-
-class CreateRecipeSerializer(serializers.ModelSerializer):
-    """JSON serializer for creating a new Recipe instance"""
-    class Meta:
-        model = Recipe
-        fields = (
-            'id',
-            'title',
-            'water_amount',
-            'lye_amount',
-            'super_fat',
-            'description',
-            'notes',
-            'public'
-        )
