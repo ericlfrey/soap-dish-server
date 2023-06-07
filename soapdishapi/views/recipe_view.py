@@ -1,6 +1,5 @@
 """View module for handling requests about game types"""
 from django.http import HttpResponseServerError
-from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -48,13 +47,66 @@ class RecipeView(ViewSet):
         oils = request.data['oils']
         for oil in oils:
             recipe = Recipe.objects.get(pk=serializer.data['id'])
-            oil_obj = Oil.objects.get(pk=oil["id"])
+            oil_obj = Oil.objects.get(pk=oil["oilId"])
             RecipeOil.objects.create(
                 recipe=recipe,
                 oil=oil_obj,
                 amount=oil["amount"]
             )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+        """Handle PUT requests for a recipe
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+
+        try:
+            recipe = Recipe.objects.get(pk=pk)
+            recipe.title = request.data["title"]
+            recipe.water_amount = request.data["water_amount"]
+            recipe.lye_amount = request.data["lye_amount"]
+            recipe.super_fat = request.data["super_fat"]
+            recipe.description = request.data["description"]
+            recipe.notes = request.data["notes"]
+            recipe.public = request.data["public"]
+            recipe.save()
+
+            recipe_oils = request.data["oils"]
+            for recipe_oil in recipe_oils:
+                if 'id' in recipe_oil:
+                    try:
+                        current_oil = RecipeOil.objects.get(
+                            pk=recipe_oil["id"])
+                        current_oil.delete()
+                    except RecipeOil.DoesNotExist:
+                        # Handle the case when the specified RecipeOil doesn't exist
+                        return Response("RecipeOil not found", status=status.HTTP_404_NOT_FOUND)
+
+                try:
+                    RecipeOil.objects.create(
+                        recipe=recipe,
+                        oil=Oil.objects.get(pk=recipe_oil["oilId"]),
+                        amount=recipe_oil["amount"]
+                    )
+                except Oil.DoesNotExist:
+                    # Handle the case when the specified Oil doesn't exist
+                    return Response("Oil not found", status=status.HTTP_404_NOT_FOUND)
+
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+        except Recipe.DoesNotExist:
+            # Handle the case when the specified Recipe doesn't exist
+            return Response("Recipe not found", status=status.HTTP_404_NOT_FOUND)
+
+        except KeyError as e:
+            # Handle the case when a required field is missing from the request data
+            return Response(f"Missing field: {str(e)}", status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            # Handle any other unexpected exceptions
+            return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class RecipeSerializer(serializers.ModelSerializer):
