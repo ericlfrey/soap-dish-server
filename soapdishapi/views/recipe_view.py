@@ -139,3 +139,11 @@ class RecipeView(ViewSet):
         recipe = Recipe.objects.get(pk=pk)
         recipe.favorites.remove(user)
         return Response({'message': 'Recipe unfavorited'}, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['get'], detail=False)
+    def favorites(self, request):
+        """Get the user's liked products"""
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        favorite_recipes = Recipe.objects.filter(favorites=user)
+        serializer = RecipeSerializer(favorite_recipes, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
