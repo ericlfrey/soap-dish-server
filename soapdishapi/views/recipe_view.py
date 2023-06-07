@@ -1,5 +1,6 @@
 """View module for handling requests about game types"""
 from django.http import HttpResponseServerError
+from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -110,7 +111,7 @@ class RecipeView(ViewSet):
 
     def destroy(self, request, pk):
         """ Handle DELETE requests for a single recipe"""
-        recipe = Recipe.objects.get(pk=pk)
+        recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
@@ -121,6 +122,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = (
             'id',
+            'maker',
             'title',
             'water_amount',
             'lye_amount',
