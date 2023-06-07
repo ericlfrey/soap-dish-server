@@ -3,8 +3,9 @@ from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import status
-from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil
+from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil, Favorite
 from soapdishapi.serializers import RecipeSerializer, SingleRecipeSerializer, CreateRecipeSerializer
 
 
@@ -115,3 +116,28 @@ class RecipeView(ViewSet):
         recipe = get_object_or_404(Recipe, pk=pk)
         recipe.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['post'], detail=True)
+    def favorite(self, request, pk):
+        """Post request for a user to favorite a recipe"""
+
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipe = Recipe.objects.get(pk=pk)
+        Favorite.objects.create(
+            recipe=recipe,
+            user=user
+        )
+        return Response({'message': 'Recipe favorited'}, status=status.HTTP_201_CREATED)
+
+    @action(methods=['delete'], detail=True)
+    def unfavorite(self, request, pk):
+        """Delete request for a user to unfavorite a recipe"""
+
+        user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipe = Recipe.objects.get(pk=pk)
+        favorite = Favorite.objects.get(
+            recipe=recipe,
+            user=user
+        )
+        favorite.delete()
+        return Response({'message': 'Recipe unfavorited'}, status=status.HTTP_204_NO_CONTENT)
