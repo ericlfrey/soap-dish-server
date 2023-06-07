@@ -1,5 +1,7 @@
 from django.db import models
 from .recipe_oil import RecipeOil
+from .soaper import Soaper
+from .favorite import Favorite
 
 
 class Recipe(models.Model):
@@ -15,6 +17,8 @@ class Recipe(models.Model):
     public = models.BooleanField(default=False)
     oils = models.ManyToManyField(
         'Oil', related_name="oils", through=RecipeOil)
+    favorites = models.ManyToManyField(
+        Soaper, through=Favorite, related_name='favorites')
 
     @property
     def favorite(self):

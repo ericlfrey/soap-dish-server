@@ -123,10 +123,7 @@ class RecipeView(ViewSet):
 
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         recipe = Recipe.objects.get(pk=pk)
-        Favorite.objects.create(
-            recipe=recipe,
-            user=user
-        )
+        recipe.favorites.add(user)
         return Response({'message': 'Recipe favorited'}, status=status.HTTP_201_CREATED)
 
     @action(methods=['delete'], detail=True)
@@ -135,9 +132,5 @@ class RecipeView(ViewSet):
 
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         recipe = Recipe.objects.get(pk=pk)
-        favorite = Favorite.objects.get(
-            recipe=recipe,
-            user=user
-        )
-        favorite.delete()
+        recipe.favorites.remove(user)
         return Response({'message': 'Recipe unfavorited'}, status=status.HTTP_204_NO_CONTENT)
