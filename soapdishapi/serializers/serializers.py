@@ -21,6 +21,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             'public',
             'is_favorite'
         )
+        depth = 1
 
 
 class OilSerializer(serializers.ModelSerializer):
