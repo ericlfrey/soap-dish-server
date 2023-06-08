@@ -11,7 +11,7 @@ from soapdishapi.serializers import RecipeSerializer, SingleRecipeSerializer, Cr
 
 
 class RecipeView(ViewSet):
-    """Level up game types view"""
+    """Recipe Viewset"""
 
     def list(self, request):
         """Handle GET requests to get all recipes

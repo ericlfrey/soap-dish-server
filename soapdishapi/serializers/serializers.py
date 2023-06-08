@@ -24,7 +24,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         depth = 1
 
 
-class OilSerializer(serializers.ModelSerializer):
+class RecipeOilSerializer(serializers.ModelSerializer):
     """Doc"""
 
     class Meta:
@@ -39,7 +39,7 @@ class OilSerializer(serializers.ModelSerializer):
 class SingleRecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
 
-    recipe_oils = OilSerializer(many=True)
+    recipe_oils = RecipeOilSerializer(many=True)
     is_favorite = serializers.BooleanField(required=False)
 
     class Meta:
@@ -72,4 +72,16 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
             'description',
             'notes',
             'public'
+        )
+
+
+class OilSerializer(serializers.ModelSerializer):
+    """JSON serializer for oils"""
+
+    class Meta:
+        model = RecipeOil
+        fields = (
+            'id',
+            'name',
+            'sap'
         )
