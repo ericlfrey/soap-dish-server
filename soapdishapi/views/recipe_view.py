@@ -147,3 +147,10 @@ class RecipeView(ViewSet):
         favorite_recipes = Recipe.objects.filter(favorites=user)
         serializer = RecipeSerializer(favorite_recipes, many=True)
         return Response({'recipes': serializer.data}, status=status.HTTP_200_OK)
+
+    @action(methods=['get'], detail=False)
+    def public(self, request):
+        """Get the user's liked products"""
+        public_recipes = Recipe.objects.filter(public=True)
+        serializer = RecipeSerializer(public_recipes, many=True)
+        return Response({'recipes': serializer.data}, status=status.HTTP_200_OK)
