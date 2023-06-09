@@ -52,7 +52,7 @@ class RecipeView(ViewSet):
         serializer.save(maker=maker)
 
         # Create a RecipeOil Instance for every oil in the oil list
-        oils = request.data['oils']
+        oils = request.data['oilList']
         for oil in oils:
             recipe = Recipe.objects.get(pk=serializer.data['id'])
             oil_obj = Oil.objects.get(pk=oil["oilId"])
@@ -73,9 +73,9 @@ class RecipeView(ViewSet):
         try:
             recipe = Recipe.objects.get(pk=pk)
             recipe.title = request.data["title"]
-            recipe.water_amount = request.data["water_amount"]
-            recipe.lye_amount = request.data["lye_amount"]
-            recipe.super_fat = request.data["super_fat"]
+            recipe.water_amount = request.data["waterAmount"]
+            recipe.lye_amount = request.data["lyeAmount"]
+            recipe.super_fat = request.data["superFat"]
             recipe.description = request.data["description"]
             recipe.notes = request.data["notes"]
             recipe.public = request.data["public"]
