@@ -81,17 +81,14 @@ class RecipeView(ViewSet):
             recipe.public = request.data["public"]
             recipe.save()
 
+            # Delete all current RecipeOil instances for the recipe
+            current_oils = RecipeOil.objects.filter(recipe=recipe)
+            for oil in current_oils:
+                oil.delete()
+
+            # Create a RecipeOil Instance for every oil in the oil list
             recipe_oils = request.data["oilList"]
             for recipe_oil in recipe_oils:
-                if 'id' in recipe_oil:
-                    try:
-                        current_oil = RecipeOil.objects.get(
-                            pk=recipe_oil["id"])
-                        current_oil.delete()
-                    except RecipeOil.DoesNotExist:
-                        # Handle the case when the specified RecipeOil doesn't exist
-                        return Response("RecipeOil not found", status=status.HTTP_404_NOT_FOUND)
-
                 try:
                     RecipeOil.objects.create(
                         recipe=recipe,
