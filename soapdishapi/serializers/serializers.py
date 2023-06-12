@@ -31,9 +31,11 @@ class RecipeOilSerializer(serializers.ModelSerializer):
         model = RecipeOil
         fields = (
             'id',
+            'oil',
             'amount',
             'oil_name'
         )
+        depth = 1
 
 
 class SingleRecipeSerializer(serializers.ModelSerializer):
@@ -57,6 +59,7 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'recipe_oils',
             'is_favorite'
         )
+        depth = 1
 
 
 class CreateRecipeSerializer(serializers.ModelSerializer):

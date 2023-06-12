@@ -12,8 +12,8 @@ class Recipe(models.Model):
     water_amount = models.DecimalField(max_digits=5, decimal_places=3)
     lye_amount = models.DecimalField(max_digits=5, decimal_places=3)
     super_fat = models.DecimalField(max_digits=5, decimal_places=3)
-    description = models.CharField(max_length=100)
-    notes = models.CharField(max_length=200)
+    description = models.CharField(max_length=500, blank=True)
+    notes = models.CharField(max_length=500, blank=True)
     public = models.BooleanField(default=False)
     oils = models.ManyToManyField(
         'Oil', related_name="oils", through=RecipeOil)
