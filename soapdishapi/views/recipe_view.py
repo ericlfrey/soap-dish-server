@@ -21,7 +21,7 @@ class RecipeView(ViewSet):
         """
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         recipes = Recipe.objects.annotate(
-            is_favorite=Count('favorites'), filter=Q(favorites=user))
+            is_favorite=Count('favorites'), filter=Q(favorites=user)).filter(maker=user)
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -81,7 +81,7 @@ class RecipeView(ViewSet):
             recipe.public = request.data["public"]
             recipe.save()
 
-            recipe_oils = request.data["oils"]
+            recipe_oils = request.data["oilList"]
             for recipe_oil in recipe_oils:
                 if 'id' in recipe_oil:
                     try:
@@ -138,7 +138,7 @@ class RecipeView(ViewSet):
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         recipe = Recipe.objects.get(pk=pk)
         recipe.favorites.remove(user)
-        return Response({'message': 'Recipe unfavorited'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'message': 'Recipe unfavorited'}, status=status.HTTP_200_OK)
 
     @action(methods=['get'], detail=False)
     def favorites(self, request):
