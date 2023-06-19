@@ -12,6 +12,12 @@ class RecipeComment(models.Model):
 
     # custom property to get the comment text for serializer
     @property
+    def comment_id(self):
+        '''Custom Property to get the comment id'''
+        return f'{self.comment.id}'
+
+    # custom property to get the comment text for serializer
+    @property
     def comment_text(self):
         '''Custom Property to get the comment text'''
         return f'{self.comment.text}'
