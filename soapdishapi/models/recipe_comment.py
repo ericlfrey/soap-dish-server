@@ -10,20 +10,20 @@ class RecipeComment(models.Model):
     comment = models.ForeignKey(
         Comment, on_delete=models.CASCADE)
 
+    # custom property to get the soaper name for serializer
+    @property
+    def commenter(self):
+        '''Custom Property to get the soaper name'''
+        return f'{self.comment.soaper.first_name} {self.comment.soaper.last_name}'
+
     # custom property to get the comment text for serializer
     @property
     def comment_id(self):
         '''Custom Property to get the comment id'''
         return f'{self.comment.id}'
-
     # custom property to get the comment text for serializer
+
     @property
-    def comment_text(self):
+    def text(self):
         '''Custom Property to get the comment text'''
         return f'{self.comment.text}'
-
-    # custom property to get the soaper name for serializer
-    @property
-    def commenter(self):
-        '''Custom Property to get the soaper name'''
-        return f'{self.recipe.maker.first_name} {self.recipe.maker.last_name}'
