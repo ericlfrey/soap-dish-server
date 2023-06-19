@@ -44,12 +44,18 @@ class CommentView(ViewSet):
             Response -- JSON serialized Comment instance
         """
         soaper = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        recipe = Recipe.objects.get(pk=request.data["recipeId"])
         comment = Comment.objects.create(
             soaper=soaper,
             text=request.data["text"],
             date_added=request.data["dateAdded"]
         )
         serializer = CommentSerializer(comment, many=False)
+
+        RecipeComment.objects.create(
+            recipe=recipe,
+            comment=comment
+        )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
