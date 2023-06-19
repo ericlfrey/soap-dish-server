@@ -18,6 +18,6 @@ class RecipeComment(models.Model):
 
     # custom property to get the soaper name for serializer
     @property
-    def soaper_name(self):
+    def commenter(self):
         '''Custom Property to get the soaper name'''
         return f'{self.recipe.maker.first_name} {self.recipe.maker.last_name}'

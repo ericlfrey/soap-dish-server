@@ -46,7 +46,7 @@ class RecipeCommentSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'comment_text',
-            'soaper_name'
+            'commenter'
         )
 
 
