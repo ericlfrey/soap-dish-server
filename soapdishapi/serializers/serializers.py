@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from soapdishapi.models import Recipe, RecipeOil, Oil
+from soapdishapi.models import Recipe, RecipeOil, Oil, Comment
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -87,4 +87,17 @@ class OilSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'sap'
+        )
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    """JSON serializer for comments"""
+
+    class Meta:
+        model = Comment
+        fields = (
+            'id',
+            'soaper',
+            'text',
+            'date_added'
         )
