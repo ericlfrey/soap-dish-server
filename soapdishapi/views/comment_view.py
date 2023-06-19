@@ -1,4 +1,4 @@
-"""View module for handling requests about game types"""
+"""View module for handling requests about Comments"""
 from django.http import HttpResponseServerError
 from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
@@ -9,19 +9,7 @@ from soapdishapi.serializers import CommentSerializer
 
 
 class CommentView(ViewSet):
-    """Recipe Viewset"""
-
-    # def list(self, request):
-    #     """Handle GET requests to get all comments
-
-    #     Returns:
-    #         Response -- JSON serialized list of comments
-    #     """
-
-    #     # recipes = Recipe.objects.annotate(
-    #     #     is_favorite=Count('favorites'), filter=Q(favorites=user)).filter(maker=user)
-    #     serializer = RecipeSerializer(recipes, many=True)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    """Comment Viewset"""
 
     def retrieve(self, request, pk):
         """Handle GET requests for single comment
@@ -29,12 +17,11 @@ class CommentView(ViewSet):
         Returns:
             Response -- JSON serialized comment
         """
-        # soaper = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         try:
             comment = Comment.objects.get(pk=pk)
             serializer = CommentSerializer(comment, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except Recipe.DoesNotExist as ex:
+        except Comment.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def create(self, request):
