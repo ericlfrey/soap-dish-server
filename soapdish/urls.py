@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from soapdishapi.views import register_user, check_user, RecipeView, OilView
+from soapdishapi.views import register_user, check_user, RecipeView, OilView, CommentView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'recipes', RecipeView, 'recipe')
 router.register(r'oils', OilView, 'oil')
+router.register(r'comments', CommentView, 'comment')
 
 urlpatterns = [
     path('register', register_user),
