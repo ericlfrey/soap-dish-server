@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from soapdishapi.models import Recipe, RecipeOil, Oil
+from soapdishapi.models import Recipe, RecipeOil, Oil, Comment, RecipeComment
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class RecipeOilSerializer(serializers.ModelSerializer):
-    """Doc"""
+    """JSON serializer for recipe oils"""
 
     class Meta:
         model = RecipeOil
@@ -38,17 +38,32 @@ class RecipeOilSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class RecipeCommentSerializer(serializers.ModelSerializer):
+    """JSON serializer for recipe Comments"""
+
+    class Meta:
+        model = RecipeComment
+        fields = (
+            'comment_id',
+            'text',
+            'commenter_name',
+            'commenter_id',
+            'date'
+        )
+
+
 class SingleRecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
 
     recipe_oils = RecipeOilSerializer(many=True)
+    recipe_comments = RecipeCommentSerializer(many=True)
     is_favorite = serializers.BooleanField(required=False)
 
     class Meta:
         model = Recipe
         fields = (
             'id',
-            'maker',
+            'maker_id',
             'title',
             'water_amount',
             'lye_amount',
@@ -57,9 +72,10 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'notes',
             'public',
             'recipe_oils',
+            'recipe_comments',
             'is_favorite'
         )
-        depth = 1
+        # depth = 1
 
 
 class CreateRecipeSerializer(serializers.ModelSerializer):
@@ -87,4 +103,17 @@ class OilSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'sap'
+        )
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    """JSON serializer for comments"""
+
+    class Meta:
+        model = Comment
+        fields = (
+            'id',
+            'soaper',
+            'text',
+            'date_added'
         )

@@ -1,4 +1,4 @@
-"""View module for handling requests about game types"""
+"""View module for handling requests about Comments"""
 from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from django.db.models import Count, Q

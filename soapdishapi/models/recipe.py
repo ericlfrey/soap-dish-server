@@ -17,6 +17,8 @@ class Recipe(models.Model):
     public = models.BooleanField(default=False)
     oils = models.ManyToManyField(
         'Oil', related_name="oils", through=RecipeOil)
+    comments = models.ManyToManyField(
+        'Comment', related_name="comments", through='RecipeComment')
     favorites = models.ManyToManyField(
         Soaper, through=Favorite, related_name='favorites')
 
@@ -28,3 +30,8 @@ class Recipe(models.Model):
     @favorite.setter
     def favorite(self, value):
         self.__favorite = value
+
+    @property
+    def maker_id(self):
+        """Custom Property"""
+        return self.__maker_id

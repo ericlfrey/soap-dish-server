@@ -1,1 +1,1 @@
-from .serializers import RecipeSerializer, SingleRecipeSerializer, CreateRecipeSerializer, OilSerializer
+from .serializers import RecipeSerializer, SingleRecipeSerializer, CreateRecipeSerializer, OilSerializer, CommentSerializer
