@@ -12,9 +12,14 @@ class RecipeComment(models.Model):
 
     # custom property to get the soaper name for serializer
     @property
-    def commenter(self):
+    def commenter_name(self):
         '''Custom Property to get the soaper name'''
         return f'{self.comment.soaper.first_name} {self.comment.soaper.last_name}'
+
+    @property
+    def commenter_id(self):
+        '''Custom Property to get the soaper name'''
+        return self.comment.soaper.id
 
     # custom property to get the comment text for serializer
     @property
@@ -27,3 +32,8 @@ class RecipeComment(models.Model):
     def text(self):
         '''Custom Property to get the comment text'''
         return f'{self.comment.text}'
+
+    @property
+    def date(self):
+        '''Custom Property to get the comment date'''
+        return f'{self.comment.date_added}'

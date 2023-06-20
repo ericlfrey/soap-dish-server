@@ -30,3 +30,8 @@ class Recipe(models.Model):
     @favorite.setter
     def favorite(self, value):
         self.__favorite = value
+
+    @property
+    def maker_id(self):
+        """Custom Property"""
+        return self.__maker_id

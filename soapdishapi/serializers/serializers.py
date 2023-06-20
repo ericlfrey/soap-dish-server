@@ -46,7 +46,9 @@ class RecipeCommentSerializer(serializers.ModelSerializer):
         fields = (
             'comment_id',
             'text',
-            'commenter'
+            'commenter_name',
+            'commenter_id',
+            'date'
         )
 
 
@@ -61,7 +63,7 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = (
             'id',
-            'maker',
+            'maker_id',
             'title',
             'water_amount',
             'lye_amount',
@@ -73,7 +75,7 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'recipe_comments',
             'is_favorite'
         )
-        depth = 1
+        # depth = 1
 
 
 class CreateRecipeSerializer(serializers.ModelSerializer):
