@@ -1,0 +1,22 @@
+[
+  {
+    "model": "soapdishapi.comment",
+    "pk": 1,
+    "fields": {
+      "soaper": 1,
+      "recipe": 3,
+      "text": "First Comment!",
+      "date_added": "2023-06-19 16:14:25.216007"
+    }
+  },
+  {
+    "model": "soapdishapi.comment",
+    "pk": 2,
+    "fields": {
+      "soaper": 1,
+      "recipe": 3,
+      "text": "This is our family's favorite recipe so far!",
+      "date_added": "2023-06-20 20:14:44.885190"
+    }
+  }
+]
