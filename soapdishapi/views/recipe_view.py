@@ -6,7 +6,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import status
-from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil, Favorite
+from soapdishapi.models import Recipe, RecipeOil, Soaper, Oil, Comment
 from soapdishapi.serializers import RecipeSerializer, SingleRecipeSerializer, CreateRecipeSerializer
 
 
@@ -32,9 +32,11 @@ class RecipeView(ViewSet):
             Response -- JSON serialized recipe
         """
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
+        comments = Comment.objects.filter(recipe=pk)
         try:
             recipe = Recipe.objects.annotate(
                 is_favorite=Count('favorites'), filter=Q(favorites=user)).get(pk=pk)
+            recipe.recipe_comments = comments
             serializer = SingleRecipeSerializer(recipe, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Recipe.DoesNotExist as ex:

@@ -1,6 +1,6 @@
 """View module for handling requests about Comments"""
+from datetime import datetime
 from django.http import HttpResponseServerError
-from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
@@ -36,7 +36,7 @@ class CommentView(ViewSet):
             soaper=soaper,
             recipe=recipe,
             text=request.data["text"],
-            date_added=request.data["dateAdded"]
+            date_added=datetime.now()
         )
         serializer = CommentSerializer(comment, many=False)
 
