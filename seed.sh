@@ -9,3 +9,4 @@ python3 manage.py loaddata soapers
 python3 manage.py loaddata recipes
 python3 manage.py loaddata oils
 python3 manage.py loaddata recipe_oils
+python3 manage.py loaddata comments

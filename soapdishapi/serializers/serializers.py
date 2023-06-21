@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from soapdishapi.models import Recipe, RecipeOil, Oil, Comment, RecipeComment
+from soapdishapi.models import Recipe, RecipeOil, Oil, Comment
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -13,15 +13,10 @@ class RecipeSerializer(serializers.ModelSerializer):
             'id',
             'maker',
             'title',
-            'water_amount',
-            'lye_amount',
-            'super_fat',
             'description',
-            'notes',
             'public',
             'is_favorite'
         )
-        depth = 1
 
 
 class RecipeOilSerializer(serializers.ModelSerializer):
@@ -38,17 +33,18 @@ class RecipeOilSerializer(serializers.ModelSerializer):
         depth = 1
 
 
-class RecipeCommentSerializer(serializers.ModelSerializer):
-    """JSON serializer for recipe Comments"""
+class CommentSerializer(serializers.ModelSerializer):
+    """JSON serializer for comments"""
 
     class Meta:
-        model = RecipeComment
+        model = Comment
         fields = (
-            'comment_id',
+            'id',
+            'soaper',
+            'recipe',
             'text',
-            'commenter_name',
-            'commenter_id',
-            'date'
+            'date_added',
+            'commenter_name'
         )
 
 
@@ -56,14 +52,14 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
     """JSON serializer for recipes"""
 
     recipe_oils = RecipeOilSerializer(many=True)
-    recipe_comments = RecipeCommentSerializer(many=True)
+    comments = CommentSerializer(many=True)
     is_favorite = serializers.BooleanField(required=False)
 
     class Meta:
         model = Recipe
         fields = (
             'id',
-            'maker_id',
+            'maker',
             'title',
             'water_amount',
             'lye_amount',
@@ -72,10 +68,9 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
             'notes',
             'public',
             'recipe_oils',
-            'recipe_comments',
+            'comments',
             'is_favorite'
         )
-        # depth = 1
 
 
 class CreateRecipeSerializer(serializers.ModelSerializer):
@@ -103,17 +98,4 @@ class OilSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'sap'
-        )
-
-
-class CommentSerializer(serializers.ModelSerializer):
-    """JSON serializer for comments"""
-
-    class Meta:
-        model = Comment
-        fields = (
-            'id',
-            'soaper',
-            'text',
-            'date_added'
         )

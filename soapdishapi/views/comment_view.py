@@ -1,10 +1,10 @@
 """View module for handling requests about Comments"""
+from datetime import datetime
 from django.http import HttpResponseServerError
-from django.db.models import Count, Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from soapdishapi.models import Recipe, Comment, Soaper, RecipeComment
+from soapdishapi.models import Recipe, Comment, Soaper
 from soapdishapi.serializers import CommentSerializer
 
 
@@ -34,15 +34,11 @@ class CommentView(ViewSet):
         recipe = Recipe.objects.get(pk=request.data["recipeId"])
         comment = Comment.objects.create(
             soaper=soaper,
+            recipe=recipe,
             text=request.data["text"],
-            date_added=request.data["dateAdded"]
+            date_added=datetime.now()
         )
         serializer = CommentSerializer(comment, many=False)
-
-        RecipeComment.objects.create(
-            recipe=recipe,
-            comment=comment
-        )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
