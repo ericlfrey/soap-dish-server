@@ -40,11 +40,6 @@ class CommentView(ViewSet):
         )
         serializer = CommentSerializer(comment, many=False)
 
-        # RecipeComment.objects.create(
-        #     recipe=recipe,
-        #     comment=comment
-        # )
-
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
