@@ -1,6 +1,8 @@
 # The Soap Dish -- Server Side!
 This is the server side portion of my Nashville Software School Full Stack Capstone: [The Soap Dish](https://github.com/ericlfrey/soap-dish-client)
 
+[Video Walkthrough](https://www.loom.com/share/25365a2897584b56932bf286f0173da8?sid=825496a2-3a9e-481a-a53e-1a911ceb1399)
+
 ![logo](https://user-images.githubusercontent.com/107942776/246680367-2b14c0d1-f0ad-451c-a60e-4792a6046e58.png)
 
 ## Topics
@@ -34,6 +36,7 @@ Modern Soap Makers have few choices when it comes to designing and calculating s
 
 
 ## Try the app yourself
+[Video Walkthrough](https://www.loom.com/share/25365a2897584b56932bf286f0173da8?sid=825496a2-3a9e-481a-a53e-1a911ceb1399)
 
 1. Clone GSD to your local machine 
 ```
