@@ -28,7 +28,6 @@ class RecipeOilSerializer(serializers.ModelSerializer):
             'id',
             'oil',
             'amount',
-            'oil_name'
         )
         depth = 1
 
