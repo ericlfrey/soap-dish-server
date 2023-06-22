@@ -10,7 +10,6 @@ def check_user(request):
     Method arguments:
       request -- The full HTTP request object
     '''
-    # uid = request.data['uid']
     uid = request.META['HTTP_AUTHORIZATION']
 
     # Use the built-in authenticate method to verify
@@ -42,7 +41,6 @@ def register_user(request):
 
     uid = request.META['HTTP_AUTHORIZATION']
     soaper = Soaper.objects.create(
-        # uid=request.data['uid'],
         uid=uid,
         first_name=request.data['firstName'],
         last_name=request.data['lastName']
