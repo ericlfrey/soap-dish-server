@@ -8,8 +8,3 @@ class RecipeOil(models.Model):
     oil = models.ForeignKey(
         "Oil", on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=5, decimal_places=3)
-
-    @property
-    def oil_name(self):
-        '''Custom Property to get the oil name'''
-        return f'{self.oil.name}'

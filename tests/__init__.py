@@ -1,1 +1,1 @@
-from .test_recipe import RecipeTests
+from .recipe_tests import RecipeTests

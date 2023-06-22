@@ -7,7 +7,7 @@ from .favorite import Favorite
 class Recipe(models.Model):
 
     maker = models.ForeignKey(
-        "Soaper", on_delete=models.CASCADE, related_name='organized_events')
+        "Soaper", on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     water_amount = models.DecimalField(max_digits=5, decimal_places=3)
     lye_amount = models.DecimalField(max_digits=5, decimal_places=3)
