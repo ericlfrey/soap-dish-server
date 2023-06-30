@@ -21,7 +21,7 @@ class RecipeView(ViewSet):
         """
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         recipes = Recipe.objects.annotate(
-            is_favorite=Count('favorites'), filter=Q(favorites=user)).filter(maker=user)
+            is_favorite=Count('favorites', filter=Q(favorites=user))).filter(maker=user)
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -34,7 +34,7 @@ class RecipeView(ViewSet):
         user = Soaper.objects.get(uid=request.META['HTTP_AUTHORIZATION'])
         try:
             recipe = Recipe.objects.annotate(
-                is_favorite=Count('favorites'), filter=Q(favorites=user)).get(pk=pk)
+                is_favorite=Count('favorites', filter=Q(favorites=user))).get(pk=pk)
             serializer = SingleRecipeSerializer(recipe, many=False)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Recipe.DoesNotExist as ex:
