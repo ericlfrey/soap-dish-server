@@ -10,3 +10,6 @@ python3 manage.py loaddata recipes
 python3 manage.py loaddata oils
 python3 manage.py loaddata recipe_oils
 python3 manage.py loaddata comments
+
+
+heroku run python3 manage.py loaddata soapers recipes oils recipe_oils comments --app soap-dish-server
